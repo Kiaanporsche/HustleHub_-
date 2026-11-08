@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="HustleHub Authentication API Tests" tests="34" time="2.453">
+  <testsuite name="1. Main API Tests / 1. Successful Registration  - Client" id="e74e9a81-5585-4255-8f3e-183fe5a51466" timestamp="2026-10-10T16:52:30.689Z" tests="4" failures="0" errors="0" time="0.324">
+    <testcase name="Status code is 201" time="0.324" classname="1MainApiTests1SuccessfulRegistrationClient"/>
+    <testcase name="Registration succeeds" time="0.324" classname="1MainApiTests1SuccessfulRegistrationClient"/>
+    <testcase name="Password is not returned" time="0.324" classname="1MainApiTests1SuccessfulRegistrationClient"/>
+    <testcase name="Registered email is correct" time="0.324" classname="1MainApiTests1SuccessfulRegistrationClient"/>
+  </testsuite>
+  <testsuite name="1. Main API Tests / 2. Successful Registration - Freelancer" id="6475233a-e565-4aa0-875c-3c4c1af55825" timestamp="2026-10-10T16:52:30.689Z" tests="5" failures="0" errors="0" time="0.272">
+    <testcase name="Status code is 201" time="0.272" classname="1MainApiTests2SuccessfulRegistrationFreelancer"/>
+    <testcase name="Registration succeeds" time="0.272" classname="1MainApiTests2SuccessfulRegistrationFreelancer"/>
+    <testcase name="Freelancer role is assigned correctly" time="0.272" classname="1MainApiTests2SuccessfulRegistrationFreelancer"/>
+    <testcase name="Registered email is correct" time="0.272" classname="1MainApiTests2SuccessfulRegistrationFreelancer"/>
+    <testcase name="Password is not returned" time="0.272" classname="1MainApiTests2SuccessfulRegistrationFreelancer"/>
+  </testsuite>
+  <testsuite name="1. Main API Tests / 3. Successful Login - Client" id="41caa9ad-8f82-43ce-8b76-0ff36beb9ab2" timestamp="2026-10-10T16:52:30.689Z" tests="3" failures="0" errors="0" time="0.229">
+    <testcase name="Status code is 200" time="0.229" classname="1MainApiTests3SuccessfulLoginClient"/>
+    <testcase name="Login succeeds" time="0.229" classname="1MainApiTests3SuccessfulLoginClient"/>
+    <testcase name="JWT token is returned" time="0.229" classname="1MainApiTests3SuccessfulLoginClient"/>
+  </testsuite>
+  <testsuite name="1. Main API Tests / 4. Successful Login - Freelancer" id="ed480542-4895-47d9-9c54-be4bde78a928" timestamp="2026-10-10T16:52:30.689Z" tests="4" failures="0" errors="0" time="0.228">
+    <testcase name="Status code is 200" time="0.228" classname="1MainApiTests4SuccessfulLoginFreelancer"/>
+    <testcase name="Login succeeds" time="0.228" classname="1MainApiTests4SuccessfulLoginFreelancer"/>
+    <testcase name="JWT token is returned" time="0.228" classname="1MainApiTests4SuccessfulLoginFreelancer"/>
+    <testcase name="Freelancer token saved" time="0.228" classname="1MainApiTests4SuccessfulLoginFreelancer"/>
+  </testsuite>
+  <testsuite name="1. Main API Tests / 5. Protected Profile - Valid Token" id="f4206f17-7136-47a8-8031-d74ab6c4b4d8" timestamp="2026-10-10T16:52:30.689Z" tests="3" failures="0" errors="0" time="0.034">
+    <testcase name="Status code is 200" time="0.034" classname="1MainApiTests5ProtectedProfileValidToken"/>
+    <testcase name="Protected route is accessible" time="0.034" classname="1MainApiTests5ProtectedProfileValidToken"/>
+    <testcase name="Authenticated user is returned" time="0.034" classname="1MainApiTests5ProtectedProfileValidToken"/>
+  </testsuite>
+  <testsuite name="1. Main API Tests / 6. Get all gigs" id="0ecf6080-6f11-4d41-9daa-7d843671c625" timestamp="2026-10-10T16:52:30.689Z" tests="3" failures="0" errors="0" time="0.035">
+    <testcase name="Status code is 200" time="0.035" classname="1MainApiTests6GetAllGigs"/>
+    <testcase name="Request succeeds" time="0.035" classname="1MainApiTests6GetAllGigs"/>
+    <testcase name="Gigs are returned as an array" time="0.035" classname="1MainApiTests6GetAllGigs"/>
+  </testsuite>
+  <testsuite name="1. Main API Tests / 7. Successful Gig Creation" id="7530c4dc-89ba-448c-b1e6-ae0b5d28b399" timestamp="2026-10-10T16:52:30.689Z" tests="5" failures="0" errors="0" time="0.074">
+    <testcase name="Status code is 201" time="0.074" classname="1MainApiTests7SuccessfulGigCreation"/>
+    <testcase name="Gig creation succeeds" time="0.074" classname="1MainApiTests7SuccessfulGigCreation"/>
+    <testcase name="Gig details are correct" time="0.074" classname="1MainApiTests7SuccessfulGigCreation"/>
+    <testcase name="Gig ID is returned" time="0.074" classname="1MainApiTests7SuccessfulGigCreation"/>
+    <testcase name="Gig ID saved successfully" time="0.074" classname="1MainApiTests7SuccessfulGigCreation"/>
+  </testsuite>
+  <testsuite name="1. Main API Tests / 8. Get my gigs - Freelancer" id="13b5374f-f453-4d62-a9b0-8104f6e8cd44" timestamp="2026-10-10T16:52:30.689Z" tests="5" failures="0" errors="0" time="0.065">
+    <testcase name="Status code is 200" time="0.065" classname="1MainApiTests8GetMyGigsFreelancer"/>
+    <testcase name="Gig retrieval succeeds" time="0.065" classname="1MainApiTests8GetMyGigsFreelancer"/>
+    <testcase name="Gigs are returned as an array" time="0.065" classname="1MainApiTests8GetMyGigsFreelancer"/>
+    <testcase name="Previously created Gig is returned" time="0.065" classname="1MainApiTests8GetMyGigsFreelancer"/>
+    <testcase name="All Gigs belong to the Freelancer" time="0.065" classname="1MainApiTests8GetMyGigsFreelancer"/>
+  </testsuite>
+  <testsuite name="1. Main API Tests / 9. Success Gig update" id="428b196e-43ad-4228-85bf-a3f8d222b0a8" timestamp="2026-10-10T16:52:30.689Z" tests="3" failures="0" errors="0" time="0.102">
+    <testcase name="Status code is 200" time="0.102" classname="1MainApiTests9SuccessGigUpdate"/>
+    <testcase name="Gig update succeeds" time="0.102" classname="1MainApiTests9SuccessGigUpdate"/>
+    <testcase name="Success message is returned" time="0.102" classname="1MainApiTests9SuccessGigUpdate"/>
+  </testsuite>
+  <testsuite name="1. Main API Tests / 10. Successful Booking creation" id="a14f5d8e-cc16-423a-84be-48ea2d052269" timestamp="2026-10-10T16:52:30.689Z" tests="5" failures="0" errors="0" time="0.133">
+    <testcase name="Status code is 201" time="0.133" classname="1MainApiTests10SuccessfulBookingCreation"/>
+    <testcase name="Booking creation succeeds" time="0.133" classname="1MainApiTests10SuccessfulBookingCreation"/>
+    <testcase name="Booking details are correct" time="0.133" classname="1MainApiTests10SuccessfulBookingCreation"/>
+    <testcase name="Transaction is created automatically" time="0.133" classname="1MainApiTests10SuccessfulBookingCreation"/>
+    <testcase name="Transaction details are correct" time="0.133" classname="1MainApiTests10SuccessfulBookingCreation"/>
+  </testsuite>
+  <testsuite name="1. Main API Tests / 11. Get Client Transactions - Success" id="cea6388f-9b9c-4b01-8807-ebd336882480" timestamp="2026-10-10T16:52:30.689Z" tests="5" failures="0" errors="0" time="0.125">
+    <testcase name="Status code is 200" time="0.125" classname="1MainApiTests11GetClientTransactionsSuccess"/>
+    <testcase name="Transaction retrieval succeeds" time="0.125" classname="1MainApiTests11GetClientTransactionsSuccess"/>
+    <testcase name="Transactions are returned as an array" time="0.125" classname="1MainApiTests11GetClientTransactionsSuccess"/>
+    <testcase name="Previous booking transaction exists" time="0.125" classname="1MainApiTests11GetClientTransactionsSuccess"/>
+    <testcase name="Transaction is completed" time="0.125" classname="1MainApiTests11GetClientTransactionsSuccess"/>
+  </testsuite>
+  <testsuite name="1. Main API Tests / 12. Get Freelancer Transactions - Success" id="040f2e60-2657-4dea-8150-79a98f71fb8a" timestamp="2026-10-10T16:52:30.689Z" tests="5" failures="0" errors="0" time="0.063">
+    <testcase name="Status code is 200" time="0.063" classname="1MainApiTests12GetFreelancerTransactionsSuccess"/>
+    <testcase name="Transaction retrieval succeeds" time="0.063" classname="1MainApiTests12GetFreelancerTransactionsSuccess"/>
+    <testcase name="Transactions are returned as an array" time="0.063" classname="1MainApiTests12GetFreelancerTransactionsSuccess"/>
+    <testcase name="Previous booking transaction exists" time="0.063" classname="1MainApiTests12GetFreelancerTransactionsSuccess"/>
+    <testcase name="Transaction details are correct" time="0.063" classname="1MainApiTests12GetFreelancerTransactionsSuccess"/>
+  </testsuite>
+  <testsuite name="1. Main API Tests / 13. Get Freelancer Income - Success" id="60142526-d718-4a79-908c-3f9b5fc04851" timestamp="2026-10-10T16:52:30.689Z" tests="4" failures="0" errors="0" time="0.065">
+    <testcase name="Status code is 200" time="0.065" classname="1MainApiTests13GetFreelancerIncomeSuccess"/>
+    <testcase name="Income retrieval succeeds" time="0.065" classname="1MainApiTests13GetFreelancerIncomeSuccess"/>
+    <testcase name="Income is a valid number" time="0.065" classname="1MainApiTests13GetFreelancerIncomeSuccess"/>
+    <testcase name="Income matches completed transactions" time="0.065" classname="1MainApiTests13GetFreelancerIncomeSuccess"/>
+  </testsuite>
+  <testsuite name="1. Main API Tests / 14. RBAC - Client Cannot Access Freelancer Income" id="626f0805-5120-4455-b365-1f254c470a26" timestamp="2026-10-10T16:52:30.689Z" tests="4" failures="0" errors="0" time="0.033">
+    <testcase name="Status code is 403 Forbidden" time="0.033" classname="1MainApiTests14RbacClientCannotAccessFreelancerIncome"/>
+    <testcase name="Access is denied" time="0.033" classname="1MainApiTests14RbacClientCannotAccessFreelancerIncome"/>
+    <testcase name="Permission error message is returned" time="0.033" classname="1MainApiTests14RbacClientCannotAccessFreelancerIncome"/>
+    <testcase name="Freelancer income is not exposed" time="0.033" classname="1MainApiTests14RbacClientCannotAccessFreelancerIncome"/>
+  </testsuite>
+  <testsuite name="1. Main API Tests / 15. RBAC - Freelancer Cannot Access Client Transactions" id="e8061d5e-8ec3-4882-b5fc-98c7fd76fa39" timestamp="2026-10-10T16:52:30.689Z" tests="4" failures="0" errors="0" time="0.033">
+    <testcase name="Status code is 403 Forbidden" time="0.033" classname="1MainApiTests15RbacFreelancerCannotAccessClientTransactions"/>
+    <testcase name="Access is denied" time="0.033" classname="1MainApiTests15RbacFreelancerCannotAccessClientTransactions"/>
+    <testcase name="Permission error message is returned" time="0.033" classname="1MainApiTests15RbacFreelancerCannotAccessClientTransactions"/>
+    <testcase name="Client transactions are not exposed" time="0.033" classname="1MainApiTests15RbacFreelancerCannotAccessClientTransactions"/>
+  </testsuite>
+  <testsuite name="1. Main API Tests / 16. RBAC - Client Cannot Create Gig" id="1cccf0ef-86e3-4eb2-be0f-4c29034cabe9" timestamp="2026-10-10T16:52:30.689Z" tests="4" failures="0" errors="0" time="0.033">
+    <testcase name="Status code is 403 Forbidden" time="0.033" classname="1MainApiTests16RbacClientCannotCreateGig"/>
+    <testcase name="Gig creation is denied" time="0.033" classname="1MainApiTests16RbacClientCannotCreateGig"/>
+    <testcase name="Permission error message is returned" time="0.033" classname="1MainApiTests16RbacClientCannotCreateGig"/>
+    <testcase name="No gig data is returned" time="0.033" classname="1MainApiTests16RbacClientCannotCreateGig"/>
+  </testsuite>
+  <testsuite name="1. Main API Tests / 17. RBAC - Freelancer Cannot Create Booking" id="d97da230-6e65-4499-98ef-188ec26d39c7" timestamp="2026-10-10T16:52:30.689Z" tests="4" failures="0" errors="0" time="0.037">
+    <testcase name="Status code is 403 Forbidden" time="0.037" classname="1MainApiTests17RbacFreelancerCannotCreateBooking"/>
+    <testcase name="Booking creation is denied" time="0.037" classname="1MainApiTests17RbacFreelancerCannotCreateBooking"/>
+    <testcase name="Permission error message is returned" time="0.037" classname="1MainApiTests17RbacFreelancerCannotCreateBooking"/>
+    <testcase name="No booking or transaction is returned" time="0.037" classname="1MainApiTests17RbacFreelancerCannotCreateBooking"/>
+  </testsuite>
+  <testsuite name="1. Main API Tests / 18. Helmet Security Headers - Verification" id="221d051c-58a7-4f46-9dd0-94fab81ccd46" timestamp="2026-10-10T16:52:30.689Z" tests="4" failures="0" errors="0" time="0.041">
+    <testcase name="Content Security Policy header exists" time="0.041" classname="1MainApiTests18HelmetSecurityHeadersVerification"/>
+    <testcase name="X-Content-Type-Options is nosniff" time="0.041" classname="1MainApiTests18HelmetSecurityHeadersVerification"/>
+    <testcase name="X-Frame-Options is DENY" time="0.041" classname="1MainApiTests18HelmetSecurityHeadersVerification"/>
+    <testcase name="Referrer-Policy header exists" time="0.041" classname="1MainApiTests18HelmetSecurityHeadersVerification"/>
+  </testsuite>
+  <testsuite name="2. Validation Tests / 19. Duplicate Registration" id="96d9ee0f-e75b-4d8b-b5b1-5be8bed1d0e4" timestamp="2026-10-10T16:52:30.689Z" tests="2" failures="0" errors="0" time="0.034">
+    <testcase name="Status code is 409" time="0.034" classname="2ValidationTests19DuplicateRegistration"/>
+    <testcase name="Duplicate user is rejected" time="0.034" classname="2ValidationTests19DuplicateRegistration"/>
+  </testsuite>
+  <testsuite name="2. Validation Tests / 20. Invalid registration - invalid name" id="57360535-24ea-48fe-88f3-b397bfe9180c" timestamp="2026-10-10T16:52:30.689Z" tests="3" failures="0" errors="0" time="0.004">
+    <testcase name="Status code is 400" time="0.004" classname="2ValidationTests20InvalidRegistrationInvalidName"/>
+    <testcase name="Registration is rejected" time="0.004" classname="2ValidationTests20InvalidRegistrationInvalidName"/>
+    <testcase name="Invalid name is identified" time="0.004" classname="2ValidationTests20InvalidRegistrationInvalidName"/>
+  </testsuite>
+  <testsuite name="2. Validation Tests / 21. Invalid Registration - Bad Email" id="92bd032b-9877-4d22-b768-d2c18ae108bd" timestamp="2026-10-10T16:52:30.689Z" tests="3" failures="0" errors="0" time="0.004">
+    <testcase name="Status code is 400" time="0.004" classname="2ValidationTests21InvalidRegistrationBadEmail"/>
+    <testcase name="Validation fails" time="0.004" classname="2ValidationTests21InvalidRegistrationBadEmail"/>
+    <testcase name="Email validation error is returned" time="0.004" classname="2ValidationTests21InvalidRegistrationBadEmail"/>
+  </testsuite>
+  <testsuite name="2. Validation Tests / 22. Invalid Registration - Weak Password" id="6e6b2e01-2c62-42e2-b4f2-1852eff20cd7" timestamp="2026-10-10T16:52:30.689Z" tests="2" failures="0" errors="0" time="0.004">
+    <testcase name="Status code is 400" time="0.004" classname="2ValidationTests22InvalidRegistrationWeakPassword"/>
+    <testcase name="Password validation error is returned" time="0.004" classname="2ValidationTests22InvalidRegistrationWeakPassword"/>
+  </testsuite>
+  <testsuite name="2. Validation Tests / 23. Invalid Registration - Invalid Role" id="b859b640-a8c8-4e33-9a6c-40c46d205d98" timestamp="2026-10-10T16:52:30.689Z" tests="2" failures="0" errors="0" time="0.003">
+    <testcase name="Status code is 400" time="0.003" classname="2ValidationTests23InvalidRegistrationInvalidRole"/>
+    <testcase name="Role validation error is returned" time="0.003" classname="2ValidationTests23InvalidRegistrationInvalidRole"/>
+  </testsuite>
+  <testsuite name="2. Validation Tests / 24. Invalid Login - Wrong Password" id="72bd9cb8-dd24-4d8a-b852-a052a83df64b" timestamp="2026-10-10T16:52:30.689Z" tests="2" failures="0" errors="0" time="0.225">
+    <testcase name="Status code is 401" time="0.225" classname="2ValidationTests24InvalidLoginWrongPassword"/>
+    <testcase name="Invalid credentials are rejected" time="0.225" classname="2ValidationTests24InvalidLoginWrongPassword"/>
+  </testsuite>
+  <testsuite name="2. Validation Tests / 25. Invalid Login - Unknown Email" id="6bb67c5f-d7f8-4306-b132-164878a403cc" timestamp="2026-10-10T16:52:30.689Z" tests="2" failures="0" errors="0" time="0.033">
+    <testcase name="Status code is 401" time="0.033" classname="2ValidationTests25InvalidLoginUnknownEmail"/>
+    <testcase name="Unknown user is rejected" time="0.033" classname="2ValidationTests25InvalidLoginUnknownEmail"/>
+  </testsuite>
+  <testsuite name="2. Validation Tests / 26. Invalid Login - Missing Password" id="fe89d7d1-07a6-42dd-bcf4-6e2c3b0584c4" timestamp="2026-10-10T16:52:30.689Z" tests="2" failures="0" errors="0" time="0.003">
+    <testcase name="Status code is 400" time="0.003" classname="2ValidationTests26InvalidLoginMissingPassword"/>
+    <testcase name="Password validation error is returned" time="0.003" classname="2ValidationTests26InvalidLoginMissingPassword"/>
+  </testsuite>
+  <testsuite name="2. Validation Tests / 27. Protected Profile - No Token" id="ee819f21-51bd-4f23-9942-9c419e07bdc8" timestamp="2026-10-10T16:52:30.689Z" tests="2" failures="0" errors="0" time="0.003">
+    <testcase name="Status code is 401" time="0.003" classname="2ValidationTests27ProtectedProfileNoToken"/>
+    <testcase name="Unauthenticated access is rejected" time="0.003" classname="2ValidationTests27ProtectedProfileNoToken"/>
+  </testsuite>
+  <testsuite name="2. Validation Tests / 28. Invalid Gig Creation - invalid title &amp; price" id="4f71690a-edea-41f1-9c48-abdcc035f1c1" timestamp="2026-10-10T16:52:30.689Z" tests="4" failures="0" errors="0" time="0.040">
+    <testcase name="Status code is 400" time="0.040" classname="2ValidationTests28InvalidGigCreationInvalidTitleAmpPrice"/>
+    <testcase name="Validation fails" time="0.040" classname="2ValidationTests28InvalidGigCreationInvalidTitleAmpPrice"/>
+    <testcase name="Invalid title is rejected" time="0.040" classname="2ValidationTests28InvalidGigCreationInvalidTitleAmpPrice"/>
+    <testcase name="Negative price is rejected" time="0.040" classname="2ValidationTests28InvalidGigCreationInvalidTitleAmpPrice"/>
+  </testsuite>
+  <testsuite name="2. Validation Tests / 29. Invalid Gig Creation - Invalid Description" id="2862a770-fc59-49bf-afa9-40fc814e99e1" timestamp="2026-10-10T16:52:30.689Z" tests="3" failures="0" errors="0" time="0.034">
+    <testcase name="Status code is 400" time="0.034" classname="2ValidationTests29InvalidGigCreationInvalidDescription"/>
+    <testcase name="Gig creation is rejected" time="0.034" classname="2ValidationTests29InvalidGigCreationInvalidDescription"/>
+    <testcase name="Invalid description is identified" time="0.034" classname="2ValidationTests29InvalidGigCreationInvalidDescription"/>
+  </testsuite>
+  <testsuite name="2. Validation Tests / 30. Invalid Gig Creation - Invalid Data Type" id="e4fd5b28-e3e7-473f-9154-9598bd5a0700" timestamp="2026-10-10T16:52:30.689Z" tests="3" failures="0" errors="0" time="0.034">
+    <testcase name="Status code is 400" time="0.034" classname="2ValidationTests30InvalidGigCreationInvalidDataType"/>
+    <testcase name="Gig creation is rejected" time="0.034" classname="2ValidationTests30InvalidGigCreationInvalidDataType"/>
+    <testcase name="Invalid title data type is identified" time="0.034" classname="2ValidationTests30InvalidGigCreationInvalidDataType"/>
+  </testsuite>
+  <testsuite name="2. Validation Tests / 31. Invalid Gig Creation - Malformed JSON" id="cbce5874-ca2a-4dfe-a298-eccb427f0c16" timestamp="2026-10-10T16:52:30.689Z" tests="4" failures="0" errors="0" time="0.004">
+    <testcase name="Status code is 400" time="0.004" classname="2ValidationTests31InvalidGigCreationMalformedJson"/>
+    <testcase name="Malformed JSON is rejected" time="0.004" classname="2ValidationTests31InvalidGigCreationMalformedJson"/>
+    <testcase name="Controlled error message is returned" time="0.004" classname="2ValidationTests31InvalidGigCreationMalformedJson"/>
+    <testcase name="Internal stack trace is not exposed" time="0.004" classname="2ValidationTests31InvalidGigCreationMalformedJson"/>
+  </testsuite>
+  <testsuite name="2. Validation Tests / 32. Invalid gig update - invalid price" id="6ec67ccc-f4d1-4fd0-880d-91b3c6644e70" timestamp="2026-10-10T16:52:30.689Z" tests="4" failures="0" errors="0" time="0.034">
+    <testcase name="Status code is 400" time="0.034" classname="2ValidationTests32InvalidGigUpdateInvalidPrice"/>
+    <testcase name="Gig update is rejected" time="0.034" classname="2ValidationTests32InvalidGigUpdateInvalidPrice"/>
+    <testcase name="Validation error message is returned" time="0.034" classname="2ValidationTests32InvalidGigUpdateInvalidPrice"/>
+    <testcase name="Invalid price is identified" time="0.034" classname="2ValidationTests32InvalidGigUpdateInvalidPrice"/>
+  </testsuite>
+  <testsuite name="2. Validation Tests / 33. Invalid Booking Creation - Invalid Gig ID" id="dc9f1bae-f2e9-4088-aba1-5152ed7617fa" timestamp="2026-10-10T16:52:30.689Z" tests="4" failures="0" errors="0" time="0.034">
+    <testcase name="Status code is 400" time="0.034" classname="2ValidationTests33InvalidBookingCreationInvalidGigId"/>
+    <testcase name="Booking creation is rejected" time="0.034" classname="2ValidationTests33InvalidBookingCreationInvalidGigId"/>
+    <testcase name="Validation error message is returned" time="0.034" classname="2ValidationTests33InvalidBookingCreationInvalidGigId"/>
+    <testcase name="Invalid Gig ID is identified" time="0.034" classname="2ValidationTests33InvalidBookingCreationInvalidGigId"/>
+  </testsuite>
+  <testsuite name="2. Validation Tests / 34. Invalid Booking Creation - Missing Gig ID" id="35bb8b4a-3335-4e0d-b344-dc42e0d19db5" timestamp="2026-10-10T16:52:30.689Z" tests="4" failures="0" errors="0" time="0.034">
+    <testcase name="Status code is 400" time="0.034" classname="2ValidationTests34InvalidBookingCreationMissingGigId"/>
+    <testcase name="Booking creation is rejected" time="0.034" classname="2ValidationTests34InvalidBookingCreationMissingGigId"/>
+    <testcase name="Validation error message is returned" time="0.034" classname="2ValidationTests34InvalidBookingCreationMissingGigId"/>
+    <testcase name="Missing Gig ID is identified" time="0.034" classname="2ValidationTests34InvalidBookingCreationMissingGigId"/>
+  </testsuite>
+</testsuites>

@@ -1,0 +1,33 @@
+
+# HustleHub+ Docker Compose
+# Part 3 - Run the frontend and backend together
+
+services:
+
+  # Node.js / Express backend
+  backend:
+    build:
+      context: ./HustleHub_backend
+      dockerfile: Dockerfile
+    container_name: hustlehub-backend
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./HustleHub_backend/.env
+    volumes:
+      # Mount local HTTPS certificates without adding
+      # private keys to the Docker image
+      - ./HustleHub_backend/ssl:/app/ssl:ro
+    restart: unless-stopped
+
+  # React frontend served by Nginx
+  frontend:
+    build:
+      context: ./HustleHub_Frontend
+      dockerfile: Dockerfile
+    container_name: hustlehub-frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+    restart: unless-stopped

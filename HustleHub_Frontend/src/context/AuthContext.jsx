@@ -1,0 +1,61 @@
+import { createContext, useContext, useState } from "react";
+
+const AuthContext = createContext();
+
+/*
+    // Code Attribution:
+    // Title: useContext
+    // Author: React Team (Meta)
+    // Date Accessed: 12 October 2026
+    // Version: React 19
+    // Availability: https://react.dev/reference/react/useContext
+    // Purpose: Referenced for accessing shared authentication
+    // state throughout the HustleHub+ application, including
+    // logged-in user information and login/logout functionality.
+*/
+
+export function AuthProvider({ children }) {
+    const [user, setUser] = useState(() => {
+        const savedUser = localStorage.getItem("user");
+
+        return savedUser
+            ? JSON.parse(savedUser)
+            : null;
+    });
+
+    const login = (userData, token) => {
+        localStorage.setItem("token", token);
+        localStorage.setItem(
+            "user",
+            JSON.stringify(userData)
+        );
+
+        setUser(userData);
+    };
+
+    const logout = () => {
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+
+        setUser(null);
+    };
+
+    const isAuthenticated = Boolean(user);
+
+    return (
+        <AuthContext.Provider
+            value={{
+                user,
+                login,
+                logout,
+                isAuthenticated
+            }}
+        >
+            {children}
+        </AuthContext.Provider>
+    );
+}
+
+export function useAuth() {
+    return useContext(AuthContext);
+}

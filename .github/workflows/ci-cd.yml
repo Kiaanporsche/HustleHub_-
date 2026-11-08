@@ -1,0 +1,219 @@
+
+# Code attribution
+# Title: SonarQube Cloud GitHub Actions Integration
+# Available at: https://docs.sonarsource.com/sonarqube-cloud/advanced-setup/ci-based-analysis/github-actions
+# Date accessed: 7 November 2026
+
+# Code attribution
+# Title: Playwright Testing in GitHub Actions
+# Available at: https://playwright.dev/docs/ci
+# Date accessed: 7 November 2026
+
+name: HustleHub+ CI/CD
+
+on:
+  push:
+    branches:
+      - main
+      - part3-Kiaan-CI-CD
+      - part3-Megan
+  pull_request:
+    branches:
+      - main
+      - part3-Kiaan-CI-CD
+      - part3-Megan
+
+jobs:
+  build-and-test:
+    name: Build and Test HustleHub+
+    runs-on: ubuntu-latest
+
+    env:
+      NODE_ENV: development
+      HUSTLEHUB_TEST_MODE: "true"
+      MONGODB_URI: mongodb://localhost:27017/?replicaSet=rs0
+      JWT_SECRET: ${{ secrets.CI_JWT_SECRET }}
+      PORT: 3000
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # Start MongoDB with replica set enabled
+      - name: Start MongoDB
+        run: |
+          docker run -d \
+            --name mongodb \
+            -p 27017:27017 \
+            mongo:7 \
+            mongod --replSet rs0 --bind_ip_all
+
+      # Configure MongoDB replica set for transactions
+      - name: Configure MongoDB replica set
+        run: |
+          for i in {1..30}; do
+            if docker exec mongodb mongosh --quiet --eval 'db.adminCommand("ping").ok' | grep -q 1; then
+              break
+            fi
+            echo "Waiting for MongoDB..."
+            sleep 2
+          done
+
+          docker exec mongodb mongosh --eval '
+            rs.initiate({
+              _id: "rs0",
+              members: [
+                { _id: 0, host: "localhost:27017" }
+              ]
+            })'
+
+          for i in {1..30}; do
+            if docker exec mongodb mongosh --quiet --eval 'db.hello().isWritablePrimary' | grep -q true; then
+              echo "MongoDB replica set is ready."
+              exit 0
+            fi
+            echo "Waiting for MongoDB primary..."
+            sleep 2
+          done
+
+          echo "MongoDB replica set failed to initialize."
+          exit 1
+
+      - name: Install backend dependencies
+        working-directory: HustleHub_backend
+        run: npm ci
+
+      - name: Run backend unit tests
+        working-directory: HustleHub_backend
+        run: npm test
+
+      - name: Install frontend dependencies
+        working-directory: HustleHub_Frontend
+        run: npm ci
+
+      - name: Run frontend tests
+        working-directory: HustleHub_Frontend
+        run: npm test
+
+      - name: Build frontend
+        working-directory: HustleHub_Frontend
+        run: npm run build
+
+      - name: Generate HTTPS certificates
+        working-directory: HustleHub_backend
+        run: |
+          mkdir -p ssl
+          openssl req -x509 -newkey rsa:2048 \
+            -keyout ssl/key.pem \
+            -out ssl/cert.pem \
+            -days 1 \
+            -nodes \
+            -subj "/CN=localhost"
+
+      - name: Start backend server
+        working-directory: HustleHub_backend
+        run: |
+          npm start > ../backend.log 2>&1 &
+
+      - name: Wait for backend to start
+        run: |
+          for i in {1..30}; do
+            if curl -k --silent --output /dev/null https://localhost:3000/; then
+              echo "Backend is running."
+              exit 0
+            fi
+            echo "Waiting for backend..."
+            sleep 2
+          done
+
+          echo "Backend failed to start."
+          cat backend.log || true
+          exit 1
+
+      - name: Run Newman API tests
+        working-directory: HustleHub_backend
+        run: npm run test:api
+
+      # Newman's rate-limit tests deliberately exhaust the in-memory limiters.
+      # Restart the backend so Playwright starts with fresh counters.
+      - name: Restart backend for Playwright
+        working-directory: HustleHub_backend
+        run: |
+          pkill -f "node server.js" || true
+          sleep 2
+          npm start >> ../backend.log 2>&1 &
+          for i in {1..30}; do
+            if curl -k --silent --output /dev/null https://localhost:3000/; then
+              echo "Backend restarted."
+              exit 0
+            fi
+            echo "Waiting for backend..."
+            sleep 2
+          done
+          echo "Backend failed to restart."
+          cat ../backend.log || true
+          exit 1
+
+      # Playwright end-to-end tests (financial dashboard)
+      - name: Install Playwright test dependencies
+        working-directory: playwright-tests
+        run: npm ci
+
+      - name: Install Playwright Chromium browser
+        working-directory: playwright-tests
+        run: npx playwright install --with-deps chromium
+
+      - name: Run Playwright tests
+        working-directory: playwright-tests
+        run: npx playwright test
+
+      # Upload Playwright test reports
+      - name: Upload Playwright report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: |
+            playwright-tests/playwright-report/
+            playwright-tests/test-results/
+            playwright-tests/results/
+          if-no-files-found: warn
+
+      # SonarQube Cloud static code analysis
+      - name: SonarQube Cloud Analysis
+        uses: SonarSource/sonarqube-scan-action@v5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+      - name: Show backend logs
+        if: always()
+        run: |
+          echo "Backend logs:"
+          cat backend.log || true
+
+      - name: Upload Newman test report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: newman-api-test-report
+          path: HustleHub_backend/reports/newman-results.xml
+          if-no-files-found: warn
+
+      
+      # Create temporary environment file for Docker CI checks
+      - name: Create Docker CI environment file
+        run: |
+          printf 'NODE_ENV=test\nPORT=3000\nMONGODB_URI=mongodb://localhost:27017/hustlehub\nJWT_SECRET=ci-placeholder-not-for-production\n' > HustleHub_backend/.env
+
+      # Validate Docker Compose configuration
+      - name: Validate Docker Compose
+        run: docker compose config --quiet
+
+      # Build backend and frontend Docker images
+      - name: Build Docker images
+        run: docker compose build

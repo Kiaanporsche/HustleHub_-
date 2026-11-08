@@ -1,0 +1,26 @@
+# Node modules
+**/node_modules/
+
+# Environment variables
+
+
+# Local SSL certificates and private keys
+**/ssl/*.pem
+
+# Logs
+**/*.log
+**/logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+.env
+.env.*
+**/.env
+**/.env.*
+
+# Playwright
+playwright-tests/playwright-report/
+playwright-tests/test-results/
+playwright-tests/results/
