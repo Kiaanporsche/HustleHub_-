@@ -123,7 +123,7 @@ jobs:
       - name: Wait for backend to start
         run: |
           for i in {1..30}; do
-            if curl -k --silent --output /dev/null https://localhost:3000/; then
+            if curl --silent --output /dev/null http://localhost:3000/; then
               echo "Backend is running."
               exit 0
             fi
