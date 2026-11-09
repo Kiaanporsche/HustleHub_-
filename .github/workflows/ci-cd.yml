@@ -86,7 +86,7 @@ jobs:
 
       - name: Install backend dependencies
         working-directory: HustleHub_backend
-        run: npm ci
+        run: npm ci --ignore-scripts
 
       - name: Run backend unit tests
         working-directory: HustleHub_backend
@@ -94,7 +94,7 @@ jobs:
 
       - name: Install frontend dependencies
         working-directory: HustleHub_Frontend
-        run: npm ci
+        run: npm ci --ignore-scripts
 
       - name: Run frontend tests
         working-directory: HustleHub_Frontend
