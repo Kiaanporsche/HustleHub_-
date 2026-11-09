@@ -186,7 +186,7 @@ jobs:
 
       # SonarQube Cloud static code analysis
       - name: SonarQube Cloud Analysis
-        uses: SonarSource/sonarqube-scan-action@1a6d90ebcb0e6ab6b1d87e37ba693fe453195ae25 # v5
+        uses: SonarSource/sonarqube-scan-action@016cabf33a6b7edf0733e179a03ad408ad4e88ba # v5.3.1
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
