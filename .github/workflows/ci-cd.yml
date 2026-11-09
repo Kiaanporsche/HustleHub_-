@@ -148,7 +148,7 @@ jobs:
           sleep 2
           npm start >> ../backend.log 2>&1 &
           for i in {1..30}; do
-            if curl -k --silent --output /dev/null https://localhost:3000/; then
+            if curl --silent --output /dev/null http://localhost:3000/; then
               echo "Backend restarted."
               exit 0
             fi
@@ -162,15 +162,15 @@ jobs:
       # Playwright end-to-end tests (financial dashboard)
       - name: Install Playwright test dependencies
         working-directory: playwright-tests
-        run: npm ci
+        run: npm ci --ignore-scripts
 
       - name: Install Playwright Chromium browser
         working-directory: playwright-tests
-        run: npx playwright install --with-deps chromium
+        run: npm exec --ignore-scripts -- playwright install --with-deps chromium #npx playwright install --with-deps chromium
 
       - name: Run Playwright tests
         working-directory: playwright-tests
-        run: npx playwright test
+        run: npm exec --ignore-scripts -- playwright test #npx playwright test
 
       # Upload Playwright test reports
       - name: Upload Playwright report
